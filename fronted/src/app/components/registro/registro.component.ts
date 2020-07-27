@@ -18,22 +18,30 @@ export class RegistroComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  addUsuario(form : NgForm){
-    this.usuarioService.postUsuarios(form.value).subscribe ( res =>{
-        //console.log(res); //observar si se ha llenado el formulario
-        this.resetForm(form);
-        console.log('usuario registrado');
-
-    });
-
-  }
-  
   resetForm(form ?: NgForm){
     if(form){
       form.reset();
       this.usuarioService.selectedUsuario = new Usuario();
     }
   }
+
+  addUsuario(form : NgForm){
+    
+    if(form.valid)
+    {
+      this.usuarioService.postUsuarios(form.value).subscribe ( res =>{});
+      alert("Registro correcto");
+      this.resetForm(form);
+    }
+    else
+    {  
+      alert("El Formulario Se Encuentra Vacio");
+    }
+
+    
+  }
+  
+ 
   
 
 }

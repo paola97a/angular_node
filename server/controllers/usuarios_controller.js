@@ -13,18 +13,16 @@ usuariosController.getUsuarios = (req, res) => {
     
 }
 
-
-
 usuariosController.createUsuarios = (req, res) => {
     const { nombre_usuario, correo,  contrasena} = req.body;
     connection.query('INSERT INTO usuario SET ? ',
     {
         nombre_usuario,
         correo,
-        contrasena
-        
+        contrasena 
     });
-    
+
+    return "ok";
 }
 
 usuariosController.getUsuario = (req, res) => {
