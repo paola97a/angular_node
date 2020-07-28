@@ -16,6 +16,7 @@ import { LoginComponent } from './components/login/login.component';
 import { RegistroComponent } from './components/registro/registro.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { from } from 'rxjs';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { from } from 'rxjs';
     RevistasComponent,
     LoginComponent,
     RegistroComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
