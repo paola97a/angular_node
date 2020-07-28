@@ -25,7 +25,7 @@ export class UsuarioService {
   }
   postUsuarios( usuario: Usuario) { //agregar usuario
     return this.http.post(this.URL_API, usuario);
-  }
+  }//comentario
 
   login(usuario: any): Observable <any> {
     
