@@ -19,16 +19,13 @@ export class RegistroComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
   resetForm(form ?: NgForm){
     if(form){
       form.reset();
       this.usuarioService.selectedUsuario = new Usuario();
     }
   }
-
-  addUsuario(form : NgForm){
-    
+  addUsuario(form : NgForm){   
     if(form.valid)
     {
       if(form.value.contrasena == form.value.contrasena2 )
@@ -38,26 +35,18 @@ export class RegistroComponent implements OnInit {
         this.resetForm(form);
       }
       else
-      {
-        
-        
+      {    
         this.isError = true;
         setTimeout(() => {
         this.isError = false;
         }, 4000);
-
-
         this.resetForm(form);
-      }
-      
+      } 
     }
     else
     {  
-      console.log(form.value);
       alert("El Formulario Se Encuentra Vacio");
-    }
-
-    
+    } 
   }
   
   

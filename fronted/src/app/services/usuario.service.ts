@@ -7,8 +7,6 @@ import { Usuario }  from '../clases/usuario';
 })
 export class UsuarioService {
 
-  
-
   selectedUsuario: Usuario; //almacenar en tipo de dato usuario
 
   usuarios: Usuario[]; //arreglo de usuarios para almacenar
