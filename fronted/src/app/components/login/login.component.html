@@ -5,10 +5,12 @@
 				<td colspan="2" align="center"> <h2>Iniciar Sesión</h2> </td>
 			</tr>
 			<br>
-			<tr>
-				<td>Usuario: </td>
+
+				<tr>
+				<td>Correo: </td>
 				<td>
-					<input id="campo_usuario"  type="text" name="txt_usuario" class="form-control" placeholder="Usuario" required oninvalid="setCustomValidity('El campo usuario es obligatorio')" oninput="setCustomValidity('')"> 
+					<input id="correo"  type="text" name="correo" [(ngModel)]="email"
+					class="form-control" placeholder="Usuario" required oninvalid="setCustomValidity('El campo usuario es obligatorio')" oninput="setCustomValidity('')"> 
 				</td>
 
 				</tr>
@@ -16,12 +18,13 @@
 				<tr>
 				<td>Contraseña: </td>
 				<td>
-					<input id="campo_contraseña" type="password"name="txt_contraseña" class="form-control"  placeholder="Contraseña" required oninvalid="setCustomValidity('El campo contraseña es obligatorio')" >
+					<input id="campo_contraseña" type="password"name="txt_contraseña"  [(ngModel)]="password"
+					class="form-control"  placeholder="Contraseña" required oninvalid="setCustomValidity('El campo contraseña es obligatorio')" >
 				</td>
 				</tr>
 		</table>
 		<br>
-		<input type="submit" value="Iniciar" class="btn-blue">
+		<input type="submit" value="Iniciar" class="btn-blue" (click)="login()">
 	</form>
 	<br>
 	<form >

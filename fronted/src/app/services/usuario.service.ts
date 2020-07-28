@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Usuario }  from '../clases/usuario';
+import { Usuario_interfaz } from '../clases/usuario_interface';
+import { Observable } from 'rxjs/Observable';
 
 @Injectable({
   providedIn: 'root'
@@ -16,17 +18,19 @@ export class UsuarioService {
   constructor(private http: HttpClient) {
     this.selectedUsuario = new Usuario();
   }
- /*
-  registro(user){
-    return this.http.post(this.URL_API + '/registro', user)
-  }*/
-
+ 
   getUsuarios() { //pedir datos
     return this.http.get(this.URL_API);
     
   }
   postUsuarios( usuario: Usuario) { //agregar usuario
     return this.http.post(this.URL_API, usuario);
+  }
+
+  login(usuario: any): Observable <any> {
+    
+    console.log(usuario)
+    return this.http.post(this.URL_API + '/login_2' , usuario);
   }
 
   /*deleteUsuario(_id: string) {
