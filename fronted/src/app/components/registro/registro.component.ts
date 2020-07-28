@@ -15,6 +15,8 @@ export class RegistroComponent implements OnInit {
 
  constructor( public usuarioService : UsuarioService) { }
 
+ public isError = false; 
+
   ngOnInit(): void {
   }
 
@@ -29,19 +31,38 @@ export class RegistroComponent implements OnInit {
     
     if(form.valid)
     {
-      this.usuarioService.postUsuarios(form.value).subscribe ( res =>{});
-      alert("Registro correcto");
-      this.resetForm(form);
+      if(form.value.contrasena == form.value.contrasena2 )
+      {
+        this.usuarioService.postUsuarios(form.value).subscribe ( res =>{});
+        alert("Registro correcto");
+        this.resetForm(form);
+      }
+      else
+      {
+        
+        
+        this.isError = true;
+        setTimeout(() => {
+        this.isError = false;
+        }, 4000);
+
+
+        this.resetForm(form);
+      }
+      
     }
     else
     {  
+      console.log(form.value);
       alert("El Formulario Se Encuentra Vacio");
     }
 
     
   }
   
- 
+  
+    
+  
   
 
 }

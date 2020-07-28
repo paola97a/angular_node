@@ -9,36 +9,72 @@
 			<tr>
 				<td>Usuario: </td>
 				<td>
-					<input type="text" class="form-control" placeholder="Usuario"
-					required oninvalid="setCustomValidity('El campo usuario es obligatorio')" 
-					oninput="setCustomValidity('')" [(ngModel)]="usuarioService.selectedUsuario.nombre_usuario" 
-					name="nombre_usuario" > 
-				</td>
-
-			</tr>
-            <tr>
-				<td>Email: </td>
-				<td>
-					<input  type="email"  [(ngModel)]="usuarioService.selectedUsuario.correo" 
-					 name="correo" class="form-control" placeholder="Correo" required oninvalid="setCustomValidity('El campo email es obligatorio')" oninput="setCustomValidity('')"> 
+					<input type="text" #name="ngModel" class="form-control" placeholder="Usuario"
+					 [(ngModel)]="usuarioService.selectedUsuario.nombre_usuario" 
+					name="nombre_usuario" required minlength="4"
+                    maxlength="15"> 
 				</td>
 
 			</tr>
 			<tr>
+				<td colspan="2">
+					<div class="alert alert-danger" role="alert" *ngIf="name.touched && !name.valid">
+						<div *ngIf="name.errors.required">Nombre es Obligatorio</div>
+						<div *ngIf="name.errors.minlength">Nombre debe tener mas de 4 caracteres</div>
+					</div>
+				</td>
+			</tr>
+            <tr>
+				<td>Email: </td>
+				<td>
+					<input  type="email" #email="ngModel" [(ngModel)]="usuarioService.selectedUsuario.correo" 
+					 name="correo" class="form-control" placeholder="Correo" required> 
+				</td>
+
+			</tr>
+			<tr>
+				<td colspan="2">
+					<div class="alert alert-danger" role="alert" *ngIf="email.touched && !email.valid">
+						<div *ngIf="email.errors.required">Email es Obligatorio</div>
+					</div>
+				</td>
+			</tr>
+			<tr>
 				<td>Contraseña: </td>
 				<td>
-					<input  type="password" [(ngModel)]="usuarioService.selectedUsuario.contrasena" 
-					 name="contrasena"  class="form-control"  placeholder="Contraseña" required oninvalid="setCustomValidity('El campo contraseña es obligatorio')" >
+					<input  type="password" #contrasena="ngModel" [(ngModel)]="usuarioService.selectedUsuario.contrasena" 
+					 name="contrasena"  class="form-control"  placeholder="Contraseña"  required  minlength="4">
 				</td>
-            </tr>
+			</tr>
+			<tr>
+				<td colspan="2">
+					<div class="alert alert-danger" role="alert" *ngIf="contrasena.touched && !contrasena.valid">
+						<div *ngIf="contrasena.errors.required">Contraseña obligatoria</div>
+						<div *ngIf="contrasena.errors.minlength">Contraseña debe tener mas de 4 caracteres</div>
+					</div>
+				</td>
+			</tr>
             
             <tr>
 				<td>Repita Contraseña: </td>
 				<td>
-					<input  type="password" name="txt_contraseña2" class="form-control"  placeholder="Repita Contraseña" required oninvalid="setCustomValidity('El campo obligatorio')" >
+					<input  type="password"  #contrasena2="ngModel" [(ngModel)]="usuarioService.selectedUsuario.contrasena2" name="contrasena2" class="form-control"  placeholder="Repetir Contraseña" required>
 				</td>
 			</tr>
-
+			<tr>
+				<td colspan="2">
+					<div class="alert alert-danger" role="alert" *ngIf="contrasena2.touched && !contrasena2.valid">
+						<div *ngIf="contrasena2.errors.required">Campo obligatorio</div>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2">
+					<div class="alert alert-danger" role="alert" *ngIf="isError">
+						Las Contraseñas Deben Coincidir
+					</div>
+				</td>
+			</tr>
 		</table>
 		<br>
 		<input type="submit" value="Registrar" class="btn-blue">
