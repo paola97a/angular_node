@@ -10,6 +10,7 @@ import { RevistasComponent } from './components/revistas/revistas.component';
 import { ComicsComponent } from './components/comics/comics.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 
+import { AutenicadosGuard } from "./guards/autenicados.guard";
 
 const routes: Routes = [
   { path: '', component: HomeComponent},
@@ -18,9 +19,9 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'registro', component: RegistroComponent},
   {path: 'productos', component: ProductosComponent, children: [
-    {path: 'libros', component: LibrosComponent},
-    {path: 'revistas', component: RevistasComponent},
-    {path: 'comics', component: ComicsComponent}
+    {path: 'libros', component: LibrosComponent, canActivate: [AutenicadosGuard]},
+    {path: 'revistas', component: RevistasComponent, canActivate: [AutenicadosGuard]},
+    {path: 'comics', component: ComicsComponent, canActivate: [AutenicadosGuard]}
   ]},
   {path: '**', component: PageNotFoundComponent }
 ];
