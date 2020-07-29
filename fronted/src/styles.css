@@ -77,7 +77,7 @@
   .footer{
     background: #d1d1d1;
     margin-top: 10px;
-    position: absolute;
+    position: fixed;
     bottom: 0px;
     width: 100%;
   }
