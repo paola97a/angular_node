@@ -24,7 +24,6 @@ export class LoginComponent implements OnInit {
       const user = {email: this.email, password: this.password};
     this.usuarioService.login(user).subscribe( data =>{
           
-
           if(data.code == 1)
           {
             this.isError = true;
@@ -34,10 +33,14 @@ export class LoginComponent implements OnInit {
         
           }
           else{
+            console.log("esta es la data");
             console.log(data);
+            this.usuarioService.setUser(data.user);
+            let token = data.code;
+            this.usuarioService.setToken(token);
+            //this.routes.navigate(["./components/home/home.component'"]);
+            
           }
-
-
       },
         err => console.log(err)
       );

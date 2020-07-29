@@ -31,12 +31,19 @@ usuariosController.logear = (req, res) => {
     //console.log(req.body);
     const usuarioEncontrado = connection.query(' SELECT  correo, contrasena FROM usuario WHERE correo = ? and contrasena= ?', [email, password], 
     (err,rows)=>{
-        
+        user = {
+            email: email,
+            password: password,
+        }
         if(rows.length > 0) {
             var exito = {
+                user,
                 message: 'Existe Usuario',
                 code: 2
             };
+            console.log("valriable exito");
+            console.log(exito);
+
             return res.send(exito);
         }
         else
