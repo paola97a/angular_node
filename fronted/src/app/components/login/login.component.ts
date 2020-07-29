@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UsuarioService } from '../../services/usuario.service';
 import { Router } from '@angular/router';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +15,9 @@ export class LoginComponent implements OnInit {
 
   public isError = false;
   
-  constructor(public usuarioService : UsuarioService, public router:Router) { }
+  constructor(public usuarioService : UsuarioService, 
+              public router:Router,
+              private location: Location) { }
 
   ngOnInit(): void {
   }
@@ -34,13 +37,11 @@ export class LoginComponent implements OnInit {
         
           }
           else{
-            console.log("esta es la data");
-            console.log(data);
             this.usuarioService.setUser(data.user);
             let token = data.code;
             this.usuarioService.setToken(token);
-            this.router.navigateByUrl('/');
-            
+            this.router.navigateByUrl('/inicio');     
+            //location.reload();     
           }
       },
         err => console.log(err)
@@ -49,10 +50,7 @@ export class LoginComponent implements OnInit {
     else{
       alert("login Vacio");
     }
-
-
-    
-
   }
 
+  
 }

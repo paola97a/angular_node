@@ -67,10 +67,7 @@ export class UsuarioService {
     localStorage.removeItem("accessToken");
     localStorage.removeItem("currentUser");
 
-    //return this.http.post(this.URL_API, usuario);
+  
   }
 
-  /*deleteUsuario(_id: string) {
-    return this.http.delete(this.URL_API + `/${_id}`);
-  }*/
 }
