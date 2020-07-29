@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Usuario }  from '../clases/usuario';
-import { Usuario_interfaz } from '../clases/usuario_interface';
+
 import { Observable } from 'rxjs/Observable';
 
 @Injectable({
@@ -32,6 +32,11 @@ export class UsuarioService {
     console.log(usuario)
     return this.http.post(this.URL_API + '/login_2' , usuario);
   }
+
+
+
+
+  ////////////////////////
 
   setUser(user: Usuario): void {
     let user_string = JSON.stringify(user);

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UsuarioService } from '../../services/usuario.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +14,7 @@ export class LoginComponent implements OnInit {
 
   public isError = false;
   
-  constructor(public usuarioService : UsuarioService) { }
+  constructor(public usuarioService : UsuarioService, public router:Router) { }
 
   ngOnInit(): void {
   }
@@ -38,7 +39,7 @@ export class LoginComponent implements OnInit {
             this.usuarioService.setUser(data.user);
             let token = data.code;
             this.usuarioService.setToken(token);
-            //this.routes.navigate(["./components/home/home.component'"]);
+            this.router.navigateByUrl('/');
             
           }
       },
