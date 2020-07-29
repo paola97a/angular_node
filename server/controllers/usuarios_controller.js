@@ -25,21 +25,13 @@ usuariosController.createUsuarios = (req, res) => {
     return "ok";
 }
 
-usuariosController.getUsuario = (req, res) => {
+usuariosController.logear = (req, res) => {
     const { email, password} = req.body;
     //console.log('entra');
     //console.log(req.body);
     const usuarioEncontrado = connection.query(' SELECT  correo, contrasena FROM usuario WHERE correo = ? and contrasena= ?', [email, password], 
     (err,rows)=>{
-        if(err) {
-            var error = {
-                message: 'No existe Usuario', //Aun no se muestra mensaje
-              
-            };
- 
-            return res.send(error);
-        }
- 
+        
         if(rows.length > 0) {
             var exito = {
                 message: 'Existe Usuario',
@@ -47,7 +39,14 @@ usuariosController.getUsuario = (req, res) => {
             };
             return res.send(exito);
         }
-
+        else
+        {
+            var exito = {
+                message: 'usuario o contraseña incorrectos',
+                code: 1
+            };
+            return res.send(exito);
+        }
     });
 }
 

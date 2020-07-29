@@ -11,25 +11,43 @@ export class LoginComponent implements OnInit {
   email: string;
   password: string;
 
+  public isError = false;
+  
   constructor(public usuarioService : UsuarioService) { }
 
   ngOnInit(): void {
   }
   login(){
-    console.log(this.email);
-    console.log(this.password);
-
-    const user = {email: this.email, password: this.password};
-    this.usuarioService.login(user).subscribe( data =>{
-         console.log(data);
-          //this.userService.setToken(data.token);
-         //this.router.navigateByUrl('/');
-      
     
+    if(this.email != null && this.password != null)
+    {
+      const user = {email: this.email, password: this.password};
+    this.usuarioService.login(user).subscribe( data =>{
+          
+
+          if(data.code == 1)
+          {
+            this.isError = true;
+            setTimeout(() => {
+            this.isError = false;
+            }, 4000);
         
-    },
-      err => console.log(err)
-    );
+          }
+          else{
+            console.log(data);
+          }
+
+
+      },
+        err => console.log(err)
+      );
+    }
+    else{
+      alert("login Vacio");
+    }
+
+
+    
 
   }
 

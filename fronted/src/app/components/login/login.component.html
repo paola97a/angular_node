@@ -8,19 +8,40 @@
 
 				<tr>
 				<td>Correo: </td>
-				<td>
-					<input id="correo"  type="text" name="correo" [(ngModel)]="email"
-					class="form-control" placeholder="Usuario" required oninvalid="setCustomValidity('El campo usuario es obligatorio')" oninput="setCustomValidity('')"> 
-				</td>
-
+					<td>
+						<input type="email" #correo="ngModel"    [(ngModel)]="email"
+						name="correo" class="form-control" placeholder="Usuario" required> 
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<div class="alert alert-danger" role="alert" *ngIf="correo.touched && !correo.valid">
+							<div *ngIf="correo.errors.required">Email es Obligatorio</div>
+						</div>
+					</td>
 				</tr>
 
 				<tr>
-				<td>Contraseña: </td>
-				<td>
-					<input id="campo_contraseña" type="password"name="txt_contraseña"  [(ngModel)]="password"
-					class="form-control"  placeholder="Contraseña" required oninvalid="setCustomValidity('El campo contraseña es obligatorio')" >
-				</td>
+					<td>Contraseña: </td>
+					<td>
+						<input type="password" #campo_contrasena='ngModel' [(ngModel)]="password" name="campo_contrasena"
+						class="form-control"  placeholder="Contraseña" required  minlength="4" >
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<div class="alert alert-danger" role="alert" *ngIf="campo_contrasena.touched && !campo_contrasena.valid">
+							<div *ngIf="campo_contrasena.errors.required">Contraseña obligatoria</div>
+							<div *ngIf="campo_contrasena.errors.minlength">Contraseña debe tener mas de 4 caracteres</div>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<div class="alert alert-danger" role="alert" *ngIf="isError">
+							Usuario o Contraseña Incorrectos.
+						</div>
+					</td>
 				</tr>
 		</table>
 		<br>
